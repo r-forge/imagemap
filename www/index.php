@@ -43,8 +43,6 @@ echo $contents; } ?>
 
 <!-- end of project description -->
 
-====
-
 <h1>Imagemaps in R</h1>
 <p>
 This package enables you to build clickable HTML imagemaps in R. Imagemaps are graphics
@@ -59,16 +57,16 @@ Currently the links go nowhere:
 </p>
 
 <img src="Menu.png" usemap="#Menu" border="0"  ISMAP><map name="Menu">
-<area shape="poly" coords="174,83,118,120,157,187,219,187,233,128,174,83" href="imPoly.html"  >
-<area shape="circle" coords="369,131,52" href="imCircle.html"  >
-<area shape="rect" coords="244,265,251,258" href="imPoint-5.html"  >
-<area shape="rect" coords="278,228,285,221" href="imPoint-6.html"  >
-<area shape="rect" coords="313,191,320,183" href="imPoint-7.html"  >
-<area shape="poly" coords="77,389,233,234,208,209,53,364" href="imText.html"  >
+<area shape="poly" coords="174,83,118,120,157,187,219,187,233,128,174,83" href="#poly"  >
+<area shape="circle" coords="369,131,52" href="#circle"  >
+<area shape="rect" coords="244,265,251,258" href="#point5"  >
+<area shape="rect" coords="278,228,285,221" href="#point6"  >
+<area shape="rect" coords="313,191,320,183" href="#point7"  >
+<area shape="poly" coords="77,389,233,234,208,209,53,364" href="#text"  >
 <area shape="rect" coords="285,340,317,370"  >
-<area shape="rect" coords="282,299,421,373" href="imRect-1.html"  >
-<area shape="rect" coords="247,291,428,411" href="imRect-2.html"  >
-<area shape="default" href="imDefault.html"  >
+<area shape="rect" coords="282,299,421,373" href="#rect1"  >
+<area shape="rect" coords="247,291,428,411" href="#rect2"  >
+<area shape="default" href="#default"  >
 </map>
 
 <p>
@@ -135,24 +133,24 @@ im <- imagemap("Menu",height=500,width=500)
 
 source("makemenu.R")
 
-addRegion(im) <- imPoly(cbind(xy$x,xy$y),href="imPoly.html")
+addRegion(im) <- imPoly(cbind(xy$x,xy$y),href="#poly")
 
-addRegion(im) <- imCircle(8.5,8.5,1.5,href="imCircle.html")
+addRegion(im) <- imCircle(8.5,8.5,1.5,href="#circle")
 
 for(i in 5:7){
-  addRegion(im) <- imPoint(i,i,.2,.2,href=paste("imPoint-",i,'.html',sep=''))
+  addRegion(im) <- imPoint(i,i,.2,.2,href=paste("#point",i,sep=''))
 }
 
 par(cex=2)
-addRegion(im) <- imText(2,4,msg,pars=list(srt=45),href="imText.html")
+addRegion(im) <- imText(2,4,msg,pars=list(srt=45),href="#text")
 par(cex=1)
 
 addRegion(im) <- imRect(6.1,2.1,7,2.9)
-addRegion(im) <- imRect(6,2,10,4,href="imRect-1.html")
+addRegion(im) <- imRect(6,2,10,4,href="#rect1")
 
-addRegion(im) <- imRect(5,1,10.2,4.2,href="imRect-2.html")
+addRegion(im) <- imRect(5,1,10.2,4.2,href="#rect2")
 
-addRegion(im) <- imDefault(href="imDefault.html")
+addRegion(im) <- imDefault(href="#default")
 createPage(im,"Menu.html",imgTags=list(border=0))
 imClose(im)
 </pre>
