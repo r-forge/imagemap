@@ -1,0 +1,10 @@
+Package: imagemap
+Version: 0.9-1
+Date: 2004/04/30
+Title: Create html imagemaps
+Author: Barry Rowlingson <b.rowlingson@lancaster.ac.uk>
+Maintainer: Barry Rowlingson <b.rowlingson@lancaster.ac.uk>
+Depends: R (>= 1.5.0)
+Description: Create html imagemaps for png() files
+License: GPL version 2 or newer (see COPYING).
+

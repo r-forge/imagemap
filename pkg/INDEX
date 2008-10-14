@@ -1,0 +1,9 @@
+addRegion<-             Add clickable region to imagemap
+createIM                Create the HTML section for an imagemap
+imCircle                Circular region on an imagemap
+imDefault               Default region for an imagemap 
+imPoint                 Point region on an imagemap
+imPoly                  Polygonal region on an imagemap
+imRect                  Rectangular region for an imagemap
+imagemap                Initialise an imagemap object
+toHTML                  Convert object to HTML

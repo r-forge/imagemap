@@ -1,0 +1,84 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass{article}
+
+\title{Imagemap Howto}
+\author{Barry Rowlingson}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+
+This package enables you to create HTML that can be put on a web page
+along with a PNG graphic file to produce a graphic with clickable regions.
+These graphics are called imagemaps.
+
+As a simple illustration we first show how to create a plot with one
+active region, a rectangle.
+
+First we create a new imagemap object, giving it the height and width
+of the PNG file that we are to create:
+<<>>=
+library(imagemap,lib.loc="~/Rlibs")
+im <- imagemap("Test",height=400,width=400)
+@ 
+
+This opens a new graphics device that sends output to the PNG
+file. Now you should create your plot on this device. We will plot the
+numbers from 1 to 5 and their squares, and draw a rectangle:
+\begin{center}
+<<fig=TRUE, echo=TRUE, print=FALSE>>=
+plot(1:5,(1:5)^2)
+title("Simple plot")
+rect(2,2^2,4,4^2)
+@ 
+\end{center}
+
+Next you need to add regions to the imagemap object. Here we add a
+rectangular clickable region that corresponds to the rectangle we drew
+on the plot:
+
+<<>>=
+addRegion(im) <- imRect(2,2^2,4,4^2,href="rect1.html")
+@ 
+
+Then you create the HTML code for the imagemap, and close the imagemap
+which closes the PNG graphic device and produces the graphic file:
+<<print=FALSE>>=
+createIM(im)
+imClose(im)
+@ 
+
+Normally you would send the HTML to a file or other connection using
+the {\tt file=} argument. Once this HTML chunk is embedded in a web
+page with the file {\tt Test.png}, then you should see the plot with a
+clickable rectangle that takes the user to {\tt rect1.html}.
+
+The rest of this document gives fuller information on the workings of
+this package.
+
+\section*{The {\tt imagemap} function}
+The first thing to do when creating imagemaps in R is to create an
+{\tt imagemap} object with the {\tt imagemap()} function. This
+function takes three arguments:
+\begin{itemize}
+\item{{\tt file}: this gives the name of the MAP in the HTML, and
+    also the name of the graphic file by appending {\tt ".png"}}
+\end{itemize}
+
+\section*{Active region definitions}
+
+\subsection*{Default}
+
+\subsection*{Rectangles}
+
+\subsection*{Circles}
+
+\subsection*{Polygons}
+
+\subsection*{Points}
+
+\section*{HTML and image output}
+
+
+\end{document}
