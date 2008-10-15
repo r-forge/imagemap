@@ -16,6 +16,6 @@ createIM(im, file = "", imgTags)
 }
 
 \references{http://www.maths.lancs.ac.uk/Software/Imagemap/}
-\author{Barry Rowlingson <B.Rowlingson.ac.uk>}
+\author{Barry Rowlingson <B.Rowlingson@lancaster.ac.uk>}
 
 \keyword{device}

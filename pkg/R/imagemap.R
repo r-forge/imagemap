@@ -10,6 +10,7 @@
 # Probably none of that code here now #
 #######################################
 
+# public
 imagemap <- function(filename,width=480,height=480,title='Imagemap from R'){
   png(paste(filename,".png",sep=''),width=width,height=height)
   im <- list()
@@ -25,10 +26,12 @@ imagemap <- function(filename,width=480,height=480,title='Imagemap from R'){
   im
 }
 
+# public
 print.imagemap <- function(x,...){
   cat("Its an imagemap!: ",x$title,"\n")
 }
 
+# public
 createPage <- function(im,file='',imgTags=list()){
   out <- paste("<html><head><title>",im$title,"</title></head>\n",sep='')
   out <- c(out,"<body>\n")
@@ -37,6 +40,7 @@ createPage <- function(im,file='',imgTags=list()){
   cat(out,file=file,sep='')
 }
 
+# private
 buildIM <- function(im,imgTags=list()){
   
   out <- paste("<img src=\"",paste(im$Filename,".png",sep=''),"\" usemap=\"#",im$Filename,"\" ",moHTML(imgTags)," ISMAP>\n",sep='')
@@ -49,10 +53,12 @@ buildIM <- function(im,imgTags=list()){
   return(out)
 }
 
+# public
 createIM <- function(im,file='',imgTags=list()){
   cat(buildIM(im,imgTags),sep='\n',file=file)
 }
 
+# public
 imClose <- function(im){
   cat(paste("Closing PNG file ",paste(im$Filename,".png",sep=''),"\n",sep=''))
   dev.off(im$Device)
@@ -75,7 +81,7 @@ lines.imPoly <- function(x,...){
 }
 
 lines.imCircle <- function(x,...){
-   symbols(x$xc,x$yc,circles=x$r,inches=F,add=T,...)
+   symbols(x$xc,x$yc,circles=x$r,inches=FALSE,add=TRUE,...)
  }
 
 lines.imRect <- function(x,...){
@@ -83,7 +89,7 @@ lines.imRect <- function(x,...){
 }
 
 
-
+# public
 "addRegion<-" <- function(im,value){
 
   im$HTML[[length(im$HTML)+1]] <- toHTML(value,im)
@@ -167,7 +173,8 @@ toHTML.imText <- function(ob,im){
 toHTML.imDefault <- function(ob,im){
   return( paste("<area shape=\"default\" ",moHTML(ob$extra)," >\n",sep='') )
 }
-  
+
+# private
 moHTML <- function(alist){
   tagline <- ""
   if(length(alist)==0){return("")}
@@ -184,11 +191,13 @@ moHTML <- function(alist){
 ####### functions to define different region types.
 ####    should validate their args..
 
+# public
 imPoint <- function(x,y,w,h,...){
   ## really a rectangle 
   imRect(x-(w/2),y+(h/2),x+(w/2),y-(h/2),...)
 }
 
+# public
 imRect <- function(xleft,ytop,xright,ybottom,...){
  res <- list(type="rect",xleft=xleft,ytop=ytop,xright=xright,ybottom=ybottom,
        extra=list(...))
@@ -196,24 +205,28 @@ imRect <- function(xleft,ytop,xright,ybottom,...){
  res
 }
 
+# public
 imCircle <- function(xc,yc,r,...){
   res <- list(type="circle",xc=xc,yc=yc,r=r,extra=list(...))
   class(res) <- c("imRegion","imCircle")
   res
 }
 
+# public
 imPoly <- function(xy,...){
   res <- list(type="poly",xy=xy,extra=list(...))
   class(res) <- c("imRegion","imPoly")
   res
 }
 
+# public
 imDefault <- function(...){
   res <- list(type="default",extra=list(...))
   class(res) <- c("imRegion","imDefault")
   res
 }
 
+# public
 imText <- function(x,y,string,pars=par(),...){
 
   ## get adj from pars or par()
@@ -247,6 +260,7 @@ imText <- function(x,y,string,pars=par(),...){
 ####### functions for transformations between various coord systems
 #########################
 
+#private
 usr2png <- function(xy,im){
 ### convert usr coords (as used in current plot) to pixels in a png
 ### with width/height stored in im
@@ -259,6 +273,7 @@ usr2png <- function(xy,im){
         )
 }
 
+# private
 usr2plt <- function(xy,dev=dev.cur()){
   olddev <- dev.cur()
   dev.set(dev)
@@ -267,6 +282,7 @@ usr2plt <- function(xy,dev=dev.cur()){
   xytrans(xy,usr)
 }
 
+# private
 plt2fig <- function(xy,dev=dev.cur()){
   olddev <- dev.cur()
   dev.set(dev)
@@ -275,6 +291,7 @@ plt2fig <- function(xy,dev=dev.cur()){
   xytrans2(xy,plt)
 }
 
+# private
 fig2dev <- function(xy,dev=dev.cur()){
   olddev <- dev.cur()
   dev.set(dev)
@@ -283,17 +300,19 @@ fig2dev <- function(xy,dev=dev.cur()){
   xytrans2(xy,fig)
 }
 
+# private
 usr2dev <- function(xy,dev=dev.cur()){
   fig2dev(plt2fig(usr2plt(xy,dev),dev),dev)
 }
 
   
-  
+# private
 xytrans2 <- function(xy,par){
   cbind(par[1]+((par[2]-par[1])*xy[,1]),
         par[3]+((par[4]-par[3])*xy[,2]))
 }  
 
+# private
 xytrans <- function(xy,par){
   cbind((xy[,1]-par[1])/(par[2]-par[1]),
         (xy[,2]-par[3])/(par[4]-par[3]))

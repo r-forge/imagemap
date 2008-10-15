@@ -17,6 +17,6 @@ toHTML(ob, im)
  Returns a character vector for the given object, one line per element.
 }
 \references{http://www.maths.lancs.ac.uk/Software/Imagemap/}
-\author{Barry Rowlingson <B.Rowlingson.ac.uk>}
+\author{Barry Rowlingson <B.Rowlingson@lancaster.ac.uk>}
 
 \keyword{device}

@@ -6,13 +6,14 @@
  Initialise an imagemap object.
 }
 \usage{
-imagemap(filename, width = 480, height = 480)
+imagemap(filename, width = 480, height = 480, title="Imagemap from R")
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
   \item{filename}{Root of filename for map and graphic file}
   \item{width}{Width of graphic file in pixels}
   \item{height}{Height of graphic file in pixels}
+  \item{title}{Text for HTML title - not the plot title}
 }
 \details{
   This function initialises a PNG graphics output device and
@@ -22,7 +23,7 @@ imagemap(filename, width = 480, height = 480)
  An object of class imagemap.
 }
 \references{http://www.maths.lancs.ac.uk/Software/Imagemap/}
-\author{Barry Rowlingson <B.Rowlingson.ac.uk>}
+\author{Barry Rowlingson <B.Rowlingson@lancaster.ac.uk>}
 
 
 \examples{

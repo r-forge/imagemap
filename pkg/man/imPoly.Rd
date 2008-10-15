@@ -21,6 +21,6 @@ imPoly(xy, ...)
  An object for adding to imagemaps.
 }
 \references{http://www.maths.lancs.ac.uk/Software/Imagemap/}
-\author{Barry Rowlingson <B.Rowlingson.ac.uk>}
+\author{Barry Rowlingson <B.Rowlingson@lancaster.ac.uk>}
 
 \keyword{device}

@@ -1,4 +1,7 @@
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+
+% \VignetteIndexEntry{imagemap howto}
+
 \documentclass{article}
 
 \title{Imagemap Howto}
@@ -19,7 +22,7 @@ active region, a rectangle.
 First we create a new imagemap object, giving it the height and width
 of the PNG file that we are to create:
 <<>>=
-library(imagemap,lib.loc="~/Rlibs")
+library(imagemap)
 im <- imagemap("Test",height=400,width=400)
 @ 
 
