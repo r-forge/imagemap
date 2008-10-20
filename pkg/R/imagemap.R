@@ -26,7 +26,7 @@ imagemap <- function(filename,width=480,height=480,title='Imagemap from R'){
   im
 }
 
-# public
+# public?
 print.imagemap <- function(x,...){
   cat("Its an imagemap!: ",x$title,"\n")
 }

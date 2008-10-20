@@ -1,0 +1,11 @@
+export(imagemap,
+       createPage,
+       createIM,
+       imClose,
+       "addRegion<-",
+       imRect,
+       imPoint,
+       imCircle,
+       imPoly,
+       imDefault,
+       imText)
